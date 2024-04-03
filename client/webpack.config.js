@@ -18,12 +18,62 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+
+      // Webpack plugin that generates our html file and injects our bundles
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: 'JATE'
+      }),
+
+      // Injects our custom service worker
+      new InjectManifest({
+        swSrc: './src/sw.js',
+        swDest: 'src-sw.js',
+      }),
+
+      // Creates a manifest.json file
+      new WebpackPwaManifest({
+        filename: 'manifest.json',
+        inject: false,
+        fingerprints: false,
+        name: 'JATE',
+        short_name: 'JATE',
+        description: 'Text editor that runs in the browser',
+        background_color: '#ffffff',
+        theme_color: '#2196f3',
+        start_url: './',
+        publicPath: './',
+        display: 'standalone',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons')
+          }
+        ]
+      })
+
     ],
 
     module: {
+      // CSS loaders
       rules: [
-        
+        {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          // Use babel-loader in order to use ES6
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            }
+          }
+        }
       ],
     },
   };
