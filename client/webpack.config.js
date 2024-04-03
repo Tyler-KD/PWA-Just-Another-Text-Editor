@@ -33,7 +33,6 @@ module.exports = () => {
 
       // Creates a manifest.json file
       new WebpackPwaManifest({
-        filename: 'manifest.json',
         inject: false,
         fingerprints: false,
         name: 'JATE',
