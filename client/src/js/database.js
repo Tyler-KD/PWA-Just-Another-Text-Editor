@@ -23,7 +23,7 @@ export const putDb = async (id, content) => {
   const tx = jateDb.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
   // This line is making a request to put (or update if it already exists) an object in the store.
-  // The object has two properties: (id and jate), where jate is set to the content passed to the function.
+  // The object has two properties: id and jate, where jate is set to the content passed to the function.
   const request = store.put({ id: id, jate: content });
   const result = await request;
   console.log('Data saved to the database', result);
