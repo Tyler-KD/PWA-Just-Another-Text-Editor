@@ -101,5 +101,5 @@ yarn.lock
 .DS_Store
 .vscode
 *.xslx
-client/dist/
-server/node_modules/
+dist/
+node_modules/
