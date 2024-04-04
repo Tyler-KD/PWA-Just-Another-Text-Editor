@@ -24,12 +24,15 @@ export const putDb = async (id, content) => {
 };
 
 // TODO: Add logic for a method that gets all the content from the database
+// Index db is trying to parse the data by using a split string function but since getAll()
+// returns an array of data it can't split it's not a string,
+// also all the data you're trying to retrieve exists in that single item from get(1)
 export const getDb = async () => {
   console.log('GET all from the database');
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const request = store.getAll();
+  const request = store.get(1);
   const result = await request;
   console.log('result.value', result);
   return result;
