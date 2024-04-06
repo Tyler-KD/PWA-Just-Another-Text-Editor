@@ -1,144 +1,112 @@
-# 19 Progressive Web Applications (PWA): Text Editor
+# PWA Just Another Text Editor
 
-## Your Task
+![GitHub License](https://img.shields.io/badge/license-MIT-default.svg)
 
-As you have progressed through this course, you have put together a number of impressive projects that you can show off to potential employers. This project is no exception; in fact, it features some of the most impressive expressions of the concepts you have learned so far.
+## Description
 
-Your task is to build a text editor that runs in the browser. The app will be a single-page application that meets the PWA criteria. Additionally, it will feature a number of data persistence techniques that serve as redundancy in case one of the options is not supported by the browser. The application will also function offline.
+PWA Just Another Text Editor is a text editor that runs in the browser.  This project was built to understand and practice Progressive Web Apps (PWA) criteria, feature a number of data persistence techniques that serve as redundancy in case one of the options is not supported by the browser, and employ offline function.  It solves the problem of wanting to create notes or code snippets with or without an internet connection so that they can be reliably retrieved for later use.  Some things learned throughout out PWA Just Another Text Editor were understanding the process of Service workers registering, installing, and activating to precache or cache resources, seeing the impact of webpacks on performance and load times while bundling JavaScript applications and extending support to many different assets such as images, fonts, and style sheets, and finally utilizing installability so that the application be opened from a desktop or mobile device home screen.
 
-To build this text editor, you will start with an existing application and implement methods for getting and storing data to an IndexedDB database. You will use a package called `idb`, which is a lightweight wrapper around the IndexedDB API. It features a number of methods that are useful for storing and retrieving data, and is used by companies like Google and Mozilla.
+## Table of Contents
 
-You will deploy this full-stack application to Render using the [Render Deployment Guide on The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/render/render-deployment-guide).
+* [Installation](#installation)
+* [Usage](#usage)
+* [Video](#video)
+* [Deployed Site](#deployed-site)
+* [Credits](#credits)
+* [Contributing](#contributing)
+* [License](#license)
+* [Tests](#tests)
+* [Features](#features)
+* [Questions](#questions)
 
-**Important**: Make sure your submission includes the `.npmrc` file in this starter code.  This will ensure your application will deploy properly to Render.
+## Installation
 
-## User Story
+Within the main directory, install dependencies by running "npm i' within the terminal of the main directory.  Because of the start script within the root package.json, this will also install all dependencies within the client and server folders.  Run "npm run build" to install webpack and output the dist folder containing the manifest.json file in the browser.  Then, connect to the server with the command "npm run start."
 
-```md
-AS A developer
-I WANT to create notes or code snippets with or without an internet connection
-SO THAT I can reliably retrieve them for later use
-```
+## Usage
 
-## Acceptance Criteria
+To run this application from the terminal, enter "npm run start" to start the server.  The message "JATE app listening at http://localhost:3001!" will display within the console.  Press (ctrl + click) to follow the link and open up the application within the URL.  Once the application is loaded, texts can be entered using "console.log('Insert Text Here')."  Click off of the DOM window and the application's data will be saved in the IndexedDB.  Reload the page and the application's data will be retrieved from the IndexedDB.  Use chrome dev tools by right clicking in the window, clicking "inspect," and clicking "Console" from the drop down menu with the ">>" symbol. Here, the GET all from database method is consoled showing that data is retrieved from an IndexedDB database in the user's browser.  PUT to the database is consoled when storing or updating data in an IndexedDB database in the user's browser.  From the drop down menu, select Application to see the Manifest providing information about the web application.  Underneath Manifest, select "Service workers" to see that it's registered, installed, and activated.  Test the Offline capabability by clicking "Offline."  Information will still be stored within the LocalStorage until Service worker is reconnected to the network.  Underneath the Storage, click "IndexedDB," then "jate", and then "jate" to see the data saved within the object store of the browser's IndexedDB.  This database will be updated once the Service worker is reconnected to the network.  Back in the window, click the button "Install" to download the web application as an icon on the desktop and taskbar.  Click the application "JATE" from the desktop or taskbar to load the application with a registered Service worker and static assets pre cached upon loading along with subsequent pages and static assets.  
 
-```md
-GIVEN a text editor web application
-WHEN I open my application in my editor
-THEN I should see a client server folder structure
-WHEN I run `npm run start` from the root directory
-THEN I find that my application should start up the backend and serve the client
-WHEN I run the text editor application from my terminal
-THEN I find that my JavaScript files have been bundled using webpack
-WHEN I run my webpack plugins
-THEN I find that I have a generated HTML file, service worker, and a manifest file
-WHEN I use next-gen JavaScript in my application
-THEN I find that the text editor still functions in the browser without errors
-WHEN I open the text editor
-THEN I find that IndexedDB has immediately created a database storage
-WHEN I enter content and subsequently click off of the DOM window
-THEN I find that the content in the text editor has been saved with IndexedDB
-WHEN I reopen the text editor after closing it
-THEN I find that the content in the text editor has been retrieved from our IndexedDB
-WHEN I click on the Install button
-THEN I download my web application as an icon on my desktop
-WHEN I load my web application
-THEN I should have a registered service worker using workbox
-WHEN I register a service worker
-THEN I should have my static assets pre cached upon loading along with subsequent pages and static assets
-WHEN I deploy to Render
-THEN I should have proper build scripts for a webpack application
-```
+For usage instructions with the deployed application using Render, follow the previous instructions after the application is loaded.
 
-## Mock-Up
+**Attached is a screenshot of the application functionality:**
 
-The following animation demonstrates the application functionality:
+![App functionality](/public/images/PWA%20Just%20Another%20Text%20Editor%20Functionality.png)
 
-![Demonstration of the finished Module 19 Challenge being used in the browser and then installed.](./Assets/00-demo.gif)
+**Attached is a screenshot of the application's manifest.json file:**
 
-The following image shows the application's `manifest.json` file:
+![manifest.json file](/public/images/PWA%20Just%20Another%20Text%20Editor%20manifest.json.png)
 
-![Demonstration of the finished Module 19 Challenge with a manifest file in the browser.](./Assets/01-manifest.png)
+**Attached is a screenshot of the application's Registered Service worker:**
 
-The following image shows the application's registered service worker:
+![Registered Service worker](/public/images/PWA%20Just%20Another%20Text%20Editor%20Registered%20Service%20worker.png)
 
-![Demonstration of the finished Module 19 Challenge with a registered service worker in the browser.](./Assets/02-service-worker.png)
+**Attached is a screenshot of the application's IndexedDB storage:**
 
-The following image shows the application's IndexedDB storage:
+![IndexedDB storage](/public/images/PWA%20Just%20Another%20Text%20Editor%20IndexedDB%20Storage.png)
 
-![Demonstration of the finished Module 19 Challenge with a IndexedDB storage named 'jate' in the browser.](./Assets/03-idb-storage.png)
+## Video
 
-## Grading Requirements
+N/A
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## Deployed Site
 
-This Challenge is graded based on the following criteria:
+[PWA Just Another Text Editor](https://pwa-just-another-text-editor.onrender.com)
 
-### Technical Acceptance Criteria: 40%
+## Credits
 
-* Satisfies all of the above acceptance criteria plus the following:
+[What is a Service Worker?](https://medium.com/commencis/what-is-service-worker-4f8dc478f0b9)
 
-  * Uses IndexedDB to create an object store and includes both GET and PUT methods
+[Progressive Web Apps: Going Offline](https://developers.google.com/codelabs/pwa-training/pwa03--going-offline#3)
 
-  * The application works without an internet connection
+[Service worker overview](https://developer.chrome.com/docs/workbox/service-worker-overview/)
 
-  * Automatically saves content inside the text editor when the DOM window is unfocused
+[What is Webpack?](https://survivejs.com/webpack/what-is-webpack/)
 
-  * Bundled with webpack
+[Why webpack?](https://webpack.js.org/concepts/why-webpack/)
 
-  * Create a service worker with workbox that Caches static assets
+[Web app manifests](https://developer.mozilla.org/en-US/docs/Web/Manifest)
 
-  * The application should use babel in order to use async / await
+## Contributing
 
-  * Application must have a generated `manifest.json` using the `WebpackPwaManifest` plug-in
+N/A
 
-  * Can be installed as a Progressive Web Application
+## License
 
-### Deployment: 32%
+MIT License
 
-* Application deployed to Render at live URL with build scripts
+Copyright (c) 2024 Tyler-KD
 
-* Application loads with no errors
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-* Application GitHub URL submitted
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* GitHub repo contains application code
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-### Application Quality: 15%
+* (https://choosealicense.com/licenses/mit/)
 
-* Application user experience is intuitive and easy to navigate
+## Tests
 
-* Application user interface style is clean and polished
+N/A
 
-* Application resembles the mock-up functionality provided in the Challenge instructions
+## Features
 
-### Repository Quality: 13%
+Node.js, npm (node package manager), express.js 4.17.1, if-env 1.0.4, concurrently 5.2.0, nodemon 2.0.22, @babel/core 7.15.0, @babel/plugin-proposal-object-rest-spread 7.20.7,
+@babel/plugin-transform-runtime 7.15.0, @babel/preset-env 7.15.0, @babel/runtime 7.15.3, babel-loader 8.2.2, css-loader 6.2.0, html-webpack-plugin 5.3.2, http-server 0.11.1, style-loader 3.2.1, webpack 5.51.1, webpack-cli 4.8.0, webpack-dev-server 4.0.0, webpack-pwa-manifest 4.3.0, workbox-cacheable-response 7.0.0, workbox-expiration 7.0.0, workbox-precaching 7.0.0,
+workbox-recipes 7.0.0, workbox-routing 7.0.0, workbox-strategies 7.0.0, workbox-webpack-plugin 6.2.4, code-mirror-themes 1.0.0, idb 6.1.2
 
-* Repository has a unique name
+## Questions
 
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+If you have any questions, please visit [GitHub/Tyler-KD](https://github.com/Tyler-KD) or submit questions to tyler.kd.knapp@gmail.com.
